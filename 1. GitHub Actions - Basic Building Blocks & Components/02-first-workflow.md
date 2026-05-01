@@ -146,7 +146,7 @@ jobs:
 
 <h3 style="color: #A3D977;">Workflow Structure Overview</h3>
 
-![GitHub Actions Workflow Structure](../github-actions-workflow-structure.png)
+![GitHub Actions Workflow Structure](../images/github-actions-workflow-structure.png)
 
 ---
 

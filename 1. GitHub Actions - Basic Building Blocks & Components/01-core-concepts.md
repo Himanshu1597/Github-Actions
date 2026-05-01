@@ -59,7 +59,7 @@ These define *when* the workflow should run. Examples:
 
 <h3 style="color: #A3D977;">Hierarchy Overview</h3>
 
-![GitHub Actions Hierarchy](../github-actions-hierarchy.png)
+![GitHub Actions Hierarchy](../images/github-actions-hierarchy.png)
 
 ---
 
