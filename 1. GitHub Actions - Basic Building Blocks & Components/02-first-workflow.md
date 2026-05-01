@@ -193,3 +193,108 @@ This workflow does nothing meaningful yet — but it demonstrates the complete c
 - YAML uses **indentation** to show what belongs to what
 - Steps use a **dash `-`** because they are a list
 - Only the job identifier and step names are yours to choose freely — everything else is a reserved keyword
+
+---
+
+<h2 style="color: #E84393;">Running & Monitoring Your Workflow — Complete Notes</h2>
+
+<h3 style="color: #F9CA24;">Saving the Workflow (Committing)</h3>
+
+- After writing your YAML file in the browser editor, you **commit** it to save it.
+- This is important to understand: **a workflow file is part of your code/repository** — it is not something stored outside of Git.
+- It lives inside your repository in `.github/workflows/` — so saving it = creating a Git commit.
+- Every time you add or edit a workflow file, you are technically making a code change to your project.
+
+---
+
+<h3 style="color: #6AB04C;">What Changes in the Actions Tab After Committing</h3>
+
+Once the workflow file is committed and GitHub detects it:
+
+- The **Actions tab** changes its appearance.
+- You now see two things:
+  - A list of **past workflow runs** (populates as workflows execute over time)
+  - A list of **all detected workflows** in your repository
+
+**How does GitHub detect workflows?**
+GitHub automatically looks inside the `.github/workflows/` folder and reads every `.yml` file it finds there. Each file = one workflow.
+
+---
+
+<h3 style="color: #22A6B3;">Triggering the Workflow Manually</h3>
+
+- Since we used the `workflow_dispatch` event, a **"Run workflow" button** appears on the Actions tab.
+- If you had NOT added `workflow_dispatch`, this button would not appear.
+- Click the button → select the branch (e.g. `main`) → the workflow starts running.
+
+---
+
+<h3 style="color: #EB4D4B;">Monitoring a Workflow Run</h3>
+
+Once triggered, you can track the execution from the Actions tab:
+
+**Status indicators:**
+
+| Symbol | Meaning |
+|--------|---------|
+| Yellow dot | Workflow is currently running |
+| Green check mark | Workflow completed successfully |
+| Red cross | Workflow failed |
+
+---
+
+<h3 style="color: #9B59B6;">Viewing Run Details</h3>
+
+You can drill down into a workflow run at three levels:
+
+**Level 1 — Workflow run overview**
+- Click on the workflow run to see which jobs were part of it.
+- You'll see the job name (e.g. `first-job`) and its status.
+
+**Level 2 — Job details**
+- Click on the job to see all steps that ran inside it.
+- You will see not just the steps you defined, but also **two automatic steps added by GitHub:**
+
+| Step | Added by | Purpose |
+|------|----------|---------|
+| Setup | GitHub (automatic) | Sets up the runner machine/environment |
+| Complete / Cleanup | GitHub (automatic) | Cleans up after the job finishes |
+| Your custom steps | You | e.g. print greeting, print goodbye |
+
+**Level 3 — Step details**
+- Expand any step to see exactly what command ran and what output it produced.
+- Example: expanding `print greeting` shows `echo "Hello World"` and its output.
+- Same for `print goodbye` — shows `echo "done - bye"` and its result.
+
+---
+
+<h3 style="color: #3498DB;">Re-running the Workflow</h3>
+
+- You can trigger the workflow **as many times as you want**.
+- Just go back to the workflow on the Actions tab → click Run workflow again.
+- Each run is logged separately and you can view its details independently.
+
+---
+
+<h3 style="color: #E67E22;">Key Takeaway</h3>
+
+> GitHub Action workflows are **part of your code**. They are defined in files inside your Git repository — not outside of it. Every change to a workflow = a Git commit.
+
+---
+
+<h2 style="color: #1ABC9C;">Running Multiple Shell Commands</h2>
+
+Thus far, you learned how to run simple shell commands like `echo "Something"` via `run: echo "Something"`.
+
+If you need to run multiple shell commands (or multi-line commands, e.g., for readability), you can easily do so by adding the pipe symbol (`|`) as a value after the `run:` key.
+
+Like this:
+
+```yaml
+...
+run: |
+    echo "First output"
+    echo "Second output"
+```
+
+This will run both commands in one step.
