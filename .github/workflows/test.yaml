@@ -1,4 +1,4 @@
-name: Test Workflow
+name: Test workflow
 
 on:
   workflow_dispatch:
@@ -6,7 +6,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Test Step
         run: echo "This is the test workflow"
+
+      - name: Print the current directory
+        run: pwd
+      - name: Print the current files in the current directory
+        run: ls -la
+
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+        with:
+          ref: main
