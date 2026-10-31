@@ -19,3 +19,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: main
+
+      - name: Print the current files and folders
+        run: ls -la
